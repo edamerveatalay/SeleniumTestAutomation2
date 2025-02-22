@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class UserTest {
 WebDriver driver; //driver parametresini birden fazla kez kullanacağımız için sınıf içinde tamamladık kullanılabilsin diye.
     @BeforeMethod
-    public void openBrowser(){
+    public void OpenBrowser(){
         driver = new ChromeDriver();
         driver.get("https://www.trendyol.com/giris");
         driver.manage().window().fullscreen();
