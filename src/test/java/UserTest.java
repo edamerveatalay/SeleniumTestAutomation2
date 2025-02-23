@@ -1,5 +1,6 @@
 import Base.BaseTest;
 import Pages.LoginPage;
+import Pages.MainPage;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -7,14 +8,15 @@ import org.testng.annotations.Test;
 public class UserTest extends BaseTest {
 
 LoginPage loginPage = new LoginPage();
+MainPage mainPage = new MainPage();
     @Test
-    public void loginSuccessful() throws InterruptedException {
-        loginPage.fillEmail(email).fillPassword(password);
-        driver.findElement(By.cssSelector("[class='q-primary q-fluid q-button-medium q-button submit']")).click();
-        Thread.sleep(5000);
-        String text =driver.findElements(By.cssSelector("[class='link-text']")).get(0).getText();
-        System.out.println(text);
-        Assert.assertEquals(text,"Hesabım");
+    public void loginSuccessful() {
+        loginPage.fillEmail(email)
+                 .fillPassword(password)
+                 .clickLoginButton();a
+        sleep(5000);
+
+        Assert.assertEquals(mainPage.getAccount(),"Hesabım");
     }
     @Test
     public void LoginUnsuccessful() throws InterruptedException {
