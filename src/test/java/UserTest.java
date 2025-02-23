@@ -1,18 +1,15 @@
+import Base.BaseTest;
+import Pages.LoginPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class UserTest extends BaseTest {
 
+LoginPage loginPage = new LoginPage();
     @Test
     public void loginSuccessful() throws InterruptedException {
-
-        driver.findElement(By.id("login-email")).sendKeys(email);
-        driver.findElement(By.name("login-password")).sendKeys(password);
+        loginPage.fillEmail(email).fillPassword(password);
         driver.findElement(By.cssSelector("[class='q-primary q-fluid q-button-medium q-button submit']")).click();
         Thread.sleep(5000);
         String text =driver.findElements(By.cssSelector("[class='link-text']")).get(0).getText();
