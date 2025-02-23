@@ -6,20 +6,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class UserTest {
-WebDriver driver; //driver parametresini birden fazla kez kullanacağımız için sınıf içinde tamamladık kullanılabilsin diye.
-    @BeforeMethod
-    public void OpenBrowser(){
-        driver = new ChromeDriver();
-        driver.get("https://www.trendyol.com/giris");
-        driver.manage().window().fullscreen();
+public class UserTest extends BaseTest {
 
-    }
     @Test
     public void loginSuccessful() throws InterruptedException {
 
-        driver.findElement(By.id("login-email")).sendKeys("atalayedamerve@gmail.com");
-        driver.findElement(By.name("login-password")).sendKeys("Testeda123.");
+        driver.findElement(By.id("login-email")).sendKeys(email);
+        driver.findElement(By.name("login-password")).sendKeys(password);
         driver.findElement(By.cssSelector("[class='q-primary q-fluid q-button-medium q-button submit']")).click();
         Thread.sleep(5000);
         String text =driver.findElements(By.cssSelector("[class='link-text']")).get(0).getText();
@@ -28,7 +21,7 @@ WebDriver driver; //driver parametresini birden fazla kez kullanacağımız içi
     }
     @Test
     public void LoginUnsuccessful() throws InterruptedException {
-        driver.findElement(By.id("login-email")).sendKeys("atalayedamerve@gmail.com");
+        driver.findElement(By.id("login-email")).sendKeys(email);
         driver.findElement(By.name("login-password")).sendKeys("testeda123.");
         driver.findElement(By.cssSelector("[class='q-primary q-fluid q-button-medium q-button submit']")).click();
         Thread.sleep(5000);
@@ -36,9 +29,5 @@ WebDriver driver; //driver parametresini birden fazla kez kullanacağımız içi
         Assert.assertEquals(driver.findElement(By.cssSelector("[class='message']")).getText(), "E-posta adresiniz ve/veya şifreniz hatalı.");
     }
 
-    @AfterMethod
-    public void CloseBrowser() {
-        driver.quit();
-    }
 
 }
