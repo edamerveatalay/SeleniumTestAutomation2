@@ -7,4 +7,11 @@ public class MainPage extends BaseTest {
     public String getAccount() {
         return driver.findElements(By.cssSelector("[class='link-text']")).get(0).getText();
     }
+    public MainPage fillSearch(String text) {
+        driver.findElement(By.cssSelector("[data-testid=\"suggestion\"]")).sendKeys(text);
+        return this;
+    }
+
+
+
 }

@@ -18,4 +18,8 @@ public class LoginPage extends BaseTest {
         return this;
     }
 
+    public String getErrorMessage () {
+        return driver.findElement(By.cssSelector("[class='message']")).getText();
+    }
+
     }

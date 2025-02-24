@@ -13,19 +13,18 @@ MainPage mainPage = new MainPage();
     public void loginSuccessful() {
         loginPage.fillEmail(email)
                  .fillPassword(password)
-                 .clickLoginButton();a
+                 .clickLoginButton();
         sleep(5000);
 
         Assert.assertEquals(mainPage.getAccount(),"Hesabım");
     }
     @Test
-    public void LoginUnsuccessful() throws InterruptedException {
-        driver.findElement(By.id("login-email")).sendKeys(email);
-        driver.findElement(By.name("login-password")).sendKeys("testeda123.");
-        driver.findElement(By.cssSelector("[class='q-primary q-fluid q-button-medium q-button submit']")).click();
-        Thread.sleep(5000);
-        System.out.println(driver.findElement(By.cssSelector("[class='message']")).getText());
-        Assert.assertEquals(driver.findElement(By.cssSelector("[class='message']")).getText(), "E-posta adresiniz ve/veya şifreniz hatalı.");
+    public void LoginUnsuccessful() {
+        loginPage.fillEmail(email)
+                        .fillPassword(password+"44")
+                                .clickLoginButton();
+        sleep(5000);
+        Assert.assertEquals(loginPage.getErrorMessage(), "E-posta adresiniz ve/veya şifreniz hatalı.");
     }
 
 
