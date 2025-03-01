@@ -11,8 +11,10 @@ public class FavoriteTest extends BaseTest {
     MainPage mainPage = new MainPage();
     ProductListPage productListPage = new ProductListPage();
     ProductDetailPage productDetailPage = new ProductDetailPage();//nesne tanımı yapıyoruz ki diğer classtan bilgi çekebilelim
+
+
     @Test
-    public void favouriteTest(){
+    public void favoriteTest(){
         loginPage.fillEmail(email)
                 .fillPassword(password)
                 .clickLoginButton();
@@ -21,12 +23,19 @@ public class FavoriteTest extends BaseTest {
 
         mainPage.fillSearch("iphone 13 128 gb");
 
-        productListPage.firstProductClick();
+        sleep(5000);
+
+        productListPage.closePopupIfPresent()  // Yeni eklenen pop-up kontrolü
+                .firstProductClick();
+
 
         switchTab(1);//yukarıdaki işlemler yapıldıktan sonra hangi sayfanın aöılıp oradan devam edilmesini istiyorsak burada onu belirttik
 
-        productDetailPage.approveButtonClick()
-                        .favoriteBottonClick();
+
+        productDetailPage.favoriteButtonClick()
+                .closeLocationPopup();
+                //.approveButtonClick();
+
 
     }
 

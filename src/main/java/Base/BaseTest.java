@@ -6,6 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public class BaseTest extends BaseLibrary {
+    public static WebDriver driver;
     @BeforeMethod
     public void OpenBrowser(){
         driver = new ChromeDriver();
@@ -13,9 +14,12 @@ public class BaseTest extends BaseLibrary {
         driver.manage().window().fullscreen();
 
     }
+
+
+
     //@AfterMethod
     //public void CloseBrowser() {
-        //driver.quit();
+    //driver.quit();
     //}
 
 }
