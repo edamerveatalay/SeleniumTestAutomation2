@@ -10,7 +10,7 @@ public class BaseLibrary extends Data{
 
     public void sleep (int millis) {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(millis);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -18,6 +18,11 @@ public class BaseLibrary extends Data{
 
     public void switchTab(int index){
         List<String> Tabs = new ArrayList<>(driver.getWindowHandles());//birden çok sekme açıldığını belirten bir koda
-        driver.switchTo().window(Tabs.get(index));
+        if (Tabs.size() > index) {
+            driver.switchTo().window(Tabs.get(index));
+        } else {
+            System.out.println("Geçiş yapmak için geçerli bir sekme yok.");
+        }
     }
+
 }

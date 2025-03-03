@@ -6,7 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public class BaseTest extends BaseLibrary {
-    public static WebDriver driver;
+
     @BeforeMethod
     public void OpenBrowser(){
         driver = new ChromeDriver();
